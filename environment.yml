@@ -1,0 +1,23 @@
+# D2L 英文版学习环境（conda 侧）
+#
+# 用法:
+#   conda env create -f environment.yml
+#   bash setup-env.sh          # 再装 PyTorch（GPU 版）
+#
+# 说明:
+#   - 这里只声明 Python 与 d2l 包；d2l 的传递依赖
+#     (numpy/matplotlib/pandas/scipy/requests/jupyter 等) 由 pip 自动拉取，
+#     并被 d2l 1.0.3 钉在官方测试版本上。
+#   - PyTorch 单独在 setup-env.sh / requirements.txt 里安装，
+#     因为需要指定 CUDA 索引（索引地址无法写进 conda 的 pip: 段）。
+
+name: d2l-cu128
+
+channels:
+  - defaults
+
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+      - d2l==1.0.3

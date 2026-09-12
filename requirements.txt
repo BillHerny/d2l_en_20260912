@@ -1,0 +1,19 @@
+# D2L 英文版 —— PyTorch 部分（需要指定 CUDA 索引，故单独成文件）
+#
+# GPU（NVIDIA，CUDA 12.8 wheel）:
+#   pip install -r requirements.txt
+#
+# 纯 CPU 机器改用:
+#   pip install torch==2.7.1 torchvision==0.22.1 \
+#       --index-url https://download.pytorch.org/whl/cpu
+#
+# 版本说明:
+#   - torch 2.7.1 / torchvision 0.22.1 是当前能覆盖
+#     sm_86 / sm_89 / sm_90 / sm_100 / sm_120 的构建，
+#     因此 RTX 4060(Ada, sm_89) 与 RTX 5060(Blackwell, sm_120) 共用同一套环境。
+#   - 官方 D2L 1.0.3 测试的是 torch 2.0.0，但该构建不含 sm_120 内核，
+#     在这些新卡上会报 "CUDA kernel error"，故上移到 2.7.1。
+
+--extra-index-url https://download.pytorch.org/whl/cu128
+torch==2.7.1
+torchvision==0.22.1
